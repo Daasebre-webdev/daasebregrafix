@@ -1,0 +1,160 @@
+.container {
+  display: flex;
+  height: calc(100vh - 60px); /* Adjust based on your header height */
+  background-color: #1a1e24;
+  color: #e5e9f0;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+/* Optional sidebar, if used */
+.sidebar {
+  width: 250px;
+  background-color: #2a2e36;
+  border-right: 1px solid #3b4252;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.newChatButton {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background-color: #5e81ac;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.newChatButton:hover {
+  background-color: #4c75a3;
+}
+
+.sessionList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sessionItem {
+  padding: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #3b4252;
+  border: 1px solid #434c5e;
+  color: #d8dee9;
+}
+
+.sessionItem:hover {
+  background-color: #4c566a;
+}
+
+.activeSession {
+  background-color: #5e81ac;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.chatArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+  padding: 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message {
+  max-width: 75%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  word-wrap: break-word;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.userMessage {
+  align-self: flex-end;
+  background-color: #5e81ac;
+  color: #eceff4;
+  border-top-right-radius: 0;
+}
+
+.assistantMessage {
+  align-self: flex-start;
+  background-color: #3b4252;
+  color: #e5e9f0;
+  border-top-left-radius: 0;
+}
+
+.messageTime {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  opacity: 0.6;
+  text-align: right;
+}
+
+.inputArea {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid #3b4252;
+  background-color: #2a2e36;
+}
+
+.inputArea input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #434c5e;
+  border-radius: 6px;
+  background-color: #1a1e24;
+  color: #e5e9f0;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+.inputArea input::placeholder {
+  color: #7e8894;
+}
+
+.inputArea button {
+  padding: 0.75rem 1.5rem;
+  background-color: #5e81ac;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.inputArea button:hover:not(:disabled) {
+  background-color: #4c75a3;
+}
+
+.inputArea button:disabled {
+  background-color: #4c566a;
+  cursor: not-allowed;
+}
+
+.welcomeMessage {
+  text-align: center;
+  margin-top: 3rem;
+  color: #999;
+}
+
+.welcomeMessage h2 {
+  color: #d8dee9;
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcomeMessage p {
+  font-size: 1rem;
+  color: #a3b1c6;
+}
