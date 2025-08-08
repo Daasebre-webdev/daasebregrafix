@@ -1,0 +1,868 @@
+{
+  "projects": {
+    "technology": [
+      {
+        "id": "tech-001",
+        "title": "Library Management System",
+        "category": "Web Development",
+        "description": "Build a digital library system with user authentication and book tracking",
+        "details": {
+          "fullDescription": "Develop a comprehensive library management system that handles book inventory, member registrations, and loan tracking. The system should include admin controls for librarians and a user portal for patrons to search and reserve books. Implement features like due date reminders, late fee calculations, and book recommendation algorithms.",
+          "difficulty": "Intermediate",
+          "duration": "4-6 weeks",
+          "learningObjectives": [
+            "Database design with relationships",
+            "User authentication flows",
+            "CRUD operations",
+            "Search and filtering implementation"
+          ],
+          "steps": [
+            {
+              "title": "Project Setup",
+              "items": [
+                "Install Node.js and npm",
+                "Set up React frontend with Vite",
+                "Initialize Express.js backend",
+                "Configure MongoDB connection"
+              ]
+            },
+            {
+              "title": "Database Design",
+              "items": [
+                "Create schemas for Books, Users, and Loans",
+                "Implement indexes for efficient searching",
+                "Set up relationships between collections"
+              ]
+            },
+            {
+              "title": "Core Functionality",
+              "items": [
+                "Develop book checkout/return system",
+                "Implement user authentication",
+                "Build admin dashboard",
+                "Create book search functionality"
+              ]
+            }
+          ],
+          "resources": {
+            "tools": [
+              {
+                "name": "MongoDB",
+                "link": "https://www.mongodb.com/docs/"
+              },
+              {
+                "name": "Express.js",
+                "link": "https://expressjs.com/"
+              },
+              {
+                "name": "React",
+                "link": "https://react.dev/learn"
+              }
+            ],
+            "guides": [
+              {
+                "title": "Mongoose ORM Guide",
+                "link": "https://mongoosejs.com/docs/guide.html"
+              },
+              {
+                "title": "JWT Authentication",
+                "link": "https://jwt.io/introduction"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "tech-002",
+        "title": "AI-Powered Chatbot",
+        "category": "Artificial Intelligence",
+        "description": "Create a conversational chatbot using Python and NLP",
+        "details": {
+          "fullDescription": "Develop an intelligent chatbot capable of understanding natural language queries and providing context-aware responses. The chatbot should integrate with common messaging platforms and include features like sentiment analysis and conversation history.",
+          "difficulty": "Advanced",
+          "duration": "6-8 weeks",
+          "learningObjectives": [
+            "Natural Language Processing basics",
+            "Neural network architectures",
+            "API integration",
+            "Context preservation in conversations"
+          ],
+          "steps": [
+            {
+              "title": "Data Collection",
+              "items": [
+                "Gather domain-specific training data",
+                "Clean and preprocess text data",
+                "Create intent classification dataset"
+              ]
+            },
+            {
+              "title": "Model Training",
+              "items": [
+                "Implement sequence-to-sequence model",
+                "Train on GPU-accelerated hardware",
+                "Evaluate using BLEU score"
+              ]
+            }
+          ],
+          "resources": {
+            "tools": [
+              {
+                "name": "Python",
+                "link": "https://docs.python.org/3/"
+              },
+              {
+                "name": "TensorFlow",
+                "link": "https://www.tensorflow.org/learn"
+              }
+            ],
+            "guides": [
+              {
+                "title": "NLTK Documentation",
+                "link": "https://www.nltk.org/"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "tech-003",
+        "title": "E-Commerce Platform",
+        "category": "Full-Stack Development",
+        "description": "Build an online store with payment processing",
+        "details": {
+          "fullDescription": "Create a complete e-commerce solution featuring product catalog, shopping cart, user accounts, and Stripe payment integration. Includes admin dashboard for inventory management and order processing.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks",
+          "learningObjectives": [
+            "Payment gateway integration",
+            "Shopping cart state management",
+            "Product variant handling",
+            "Order processing workflow"
+          ],
+          "resources": {
+            "tools": [
+              {
+                "name": "Stripe API",
+                "link": "https://stripe.com/docs"
+              },
+              {
+                "name": "Next.js",
+                "link": "https://nextjs.org/docs"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "tech-004",
+        "title": "IoT Smart Home Hub",
+        "category": "Internet of Things",
+        "description": "Central control system for smart home devices",
+        "details": {
+          "fullDescription": "Develop a hub application that connects and controls various IoT devices in a smart home environment, with automation rules and remote access capabilities.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks",
+          "learningObjectives": [
+            "IoT communication protocols",
+            "Device interoperability",
+            "Automation rule engines",
+            "Remote access security"
+          ],
+          "resources": {
+            "tools": [
+              {
+                "name": "MQTT",
+                "link": "https://mqtt.org/"
+              },
+              {
+                "name": "Node-RED",
+                "link": "https://nodered.org/"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "tech-005",
+        "title": "Blockchain Supply Chain",
+        "category": "Blockchain",
+        "description": "Transparent product tracking system",
+        "details": {
+          "fullDescription": "Create a blockchain-based solution for tracking products through supply chains with immutable records of origin, handling, and quality checks.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks",
+          "learningObjectives": [
+            "Smart contract development",
+            "Supply chain processes",
+            "Decentralized ledger applications",
+            "Product verification systems"
+          ]
+        }
+      },
+      {
+        "id": "tech-006",
+        "title": "AR Furniture Visualizer",
+        "category": "Augmented Reality",
+        "description": "Preview furniture in your space using AR",
+        "details": {
+          "fullDescription": "Build an AR application that allows users to visualize how furniture would look in their actual living spaces using their smartphone cameras.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "steps": [
+            {
+              "title": "Core Features",
+              "items": [
+                "Implement surface detection",
+                "Create 3D model rendering",
+                "Develop scaling functionality",
+                "Add lighting matching"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "tech-007",
+        "title": "Automated Testing Framework",
+        "category": "Software Engineering",
+        "description": "Custom testing platform for web applications",
+        "details": {
+          "fullDescription": "Develop an extensible automated testing framework that supports multiple testing types (unit, integration, UI) with customizable reporting.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "learningObjectives": [
+            "Test automation principles",
+            "Software design patterns",
+            "Reporting systems",
+            "CI/CD integration"
+          ]
+        }
+      },
+      {
+        "id": "tech-008",
+        "title": "Data Visualization Dashboard",
+        "category": "Data Science",
+        "description": "Interactive analytics visualization tool",
+        "details": {
+          "fullDescription": "Create a customizable dashboard for visualizing complex datasets with interactive charts, filters, and real-time data updates.",
+          "difficulty": "Intermediate",
+          "duration": "5-7 weeks",
+          "resources": {
+            "tools": [
+              {
+                "name": "D3.js",
+                "link": "https://d3js.org/"
+              },
+              {
+                "name": "Plotly",
+                "link": "https://plotly.com/"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "tech-009",
+        "title": "Container Orchestration Tool",
+        "category": "DevOps",
+        "description": "Management system for containerized applications",
+        "details": {
+          "fullDescription": "Build a simplified container orchestration system that handles deployment, scaling, and networking for containerized microservices.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks",
+          "learningObjectives": [
+            "Containerization concepts",
+            "Load balancing",
+            "Service discovery",
+            "Auto-scaling"
+          ]
+        }
+      },
+      {
+        "id": "tech-010",
+        "title": "Voice Assistant Skills Kit",
+        "category": "AI Integration",
+        "description": "Development toolkit for voice assistant skills",
+        "details": {
+          "fullDescription": "Create a framework that simplifies development of custom skills for popular voice assistants with pre-built templates and testing tools.",
+          "difficulty": "Intermediate",
+          "duration": "4-6 weeks",
+          "steps": [
+            {
+              "title": "Core Components",
+              "items": [
+                "Implement intent recognition",
+                "Create response templates",
+                "Build testing interface",
+                "Develop deployment scripts"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "health": [
+      {
+        "id": "health-001",
+        "title": "Fitness Tracker App",
+        "category": "Mobile Development",
+        "description": "Track workouts and nutrition with data visualization",
+        "details": {
+          "fullDescription": "Develop a cross-platform mobile application for tracking exercise routines, nutrition intake, and progress metrics with data visualization and social sharing features.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "learningObjectives": [
+            "Mobile UI development",
+            "Health data visualization",
+            "Offline data sync",
+            "Sensor data integration"
+          ]
+        }
+      },
+      {
+        "id": "health-002",
+        "title": "Telemedicine Platform",
+        "category": "Web Development",
+        "description": "Secure video consultations for doctors and patients",
+        "details": {
+          "fullDescription": "Build a HIPAA-compliant telemedicine platform with video consultations, appointment scheduling, prescription management, and patient records system.",
+          "difficulty": "Advanced",
+          "duration": "10-12 weeks",
+          "steps": [
+            {
+              "title": "Core Features",
+              "items": [
+                "Implement WebRTC video calls",
+                "Build scheduling system",
+                "Create patient records interface"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "health-003",
+        "title": "Medication Reminder System",
+        "category": "Mobile Development",
+        "description": "Smart medication scheduling and tracking",
+        "details": {
+          "fullDescription": "Create an intelligent medication reminder app that tracks dosage history, provides refill alerts, and can notify caregivers if doses are missed.",
+          "difficulty": "Intermediate",
+          "duration": "5-7 weeks",
+          "learningObjectives": [
+            "Local notifications",
+            "Health data privacy",
+            "Caregiver communication",
+            "Dosage tracking"
+          ]
+        }
+      },
+      {
+        "id": "health-004",
+        "title": "Mental Health Journal",
+        "category": "Mobile Development",
+        "description": "Mood tracking and wellness journal",
+        "details": {
+          "fullDescription": "Develop a secure journaling app that tracks mental health patterns with sentiment analysis and provides coping recommendations.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "resources": {
+            "tools": [
+              {
+                "name": "Firebase",
+                "link": "https://firebase.google.com/"
+              },
+              {
+                "name": "TensorFlow Lite",
+                "link": "https://www.tensorflow.org/lite"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "health-005",
+        "title": "Clinical Trial Finder",
+        "category": "Web Development",
+        "description": "Match patients with medical research studies",
+        "details": {
+          "fullDescription": "Build a platform that matches patients with appropriate clinical trials based on medical history, location, and eligibility criteria.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks",
+          "steps": [
+            {
+              "title": "Key Components",
+              "items": [
+                "Develop eligibility algorithm",
+                "Create patient profile system",
+                "Implement search functionality",
+                "Build notification system"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "health-006",
+        "title": "Emergency Response App",
+        "category": "Mobile Development",
+        "description": "Rapid emergency alert system",
+        "details": {
+          "fullDescription": "Create an emergency response app that automatically alerts nearby medical services with the user's location and medical information.",
+          "difficulty": "Intermediate",
+          "duration": "5-7 weeks",
+          "learningObjectives": [
+            "Geolocation services",
+            "Emergency protocols",
+            "Rapid alert systems",
+            "Medical ID integration"
+          ]
+        }
+      },
+      {
+        "id": "health-007",
+        "title": "Nutrition Analyzer",
+        "category": "AI/Mobile",
+        "description": "Food recognition and nutrient analysis",
+        "details": {
+          "fullDescription": "Develop an AI-powered application that recognizes food items from images and provides detailed nutritional analysis.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks",
+          "resources": {
+            "tools": [
+              {
+                "name": "Python",
+                "link": "https://www.python.org/"
+              },
+              {
+                "name": "OpenCV",
+                "link": "https://opencv.org/"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "health-008",
+        "title": "Sleep Pattern Monitor",
+        "category": "IoT/Mobile",
+        "description": "Sleep quality tracking and analysis",
+        "details": {
+          "fullDescription": "Create a system that analyzes sleep patterns using wearable data and provides improvement recommendations.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "learningObjectives": [
+            "Wearable API integration",
+            "Sleep science fundamentals",
+            "Data visualization",
+            "Recommendation algorithms"
+          ]
+        }
+      },
+      {
+        "id": "health-009",
+        "title": "Epidemic Tracker",
+        "category": "Data Science",
+        "description": "Disease spread visualization tool",
+        "details": {
+          "fullDescription": "Build a visualization tool that models disease spread patterns based on population data and infection parameters.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks",
+          "steps": [
+            {
+              "title": "Core Features",
+              "items": [
+                "Implement data ingestion pipeline",
+                "Develop transmission models",
+                "Create visualization components",
+                "Build scenario testing"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "health-010",
+        "title": "Prosthetic Training App",
+        "category": "Mobile Development",
+        "description": "Rehabilitation tool for prosthetic users",
+        "details": {
+          "fullDescription": "Develop a mobile application that helps prosthetic limb users track their rehabilitation progress and improve control.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "learningObjectives": [
+            "Rehabilitation tracking",
+            "Progress visualization",
+            "Exercise customization",
+            "Accessibility design"
+          ]
+        }
+      }
+    ],
+    "business": [
+      {
+        "id": "biz-001",
+        "title": "Inventory Management System",
+        "category": "Desktop Application",
+        "description": "Track stock levels and generate reports",
+        "details": {
+          "fullDescription": "Develop a desktop application for small businesses to manage inventory, track sales, generate reports, and automate reordering processes.",
+          "difficulty": "Intermediate",
+          "duration": "5-7 weeks"
+        }
+      },
+      {
+        "id": "biz-002",
+        "title": "Customer Relationship Manager",
+        "category": "Web Application",
+        "description": "Manage client interactions and sales pipelines",
+        "details": {
+          "fullDescription": "Create a CRM tool for managing client interactions, sales pipelines, marketing campaigns, and customer support tickets with analytics dashboard.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks"
+        }
+      },
+      {
+        "id": "biz-003",
+        "title": "Point of Sale System",
+        "category": "Desktop Application",
+        "description": "Retail transaction processing software",
+        "details": {
+          "fullDescription": "Build a complete POS system with inventory integration, receipt printing, payment processing, and sales analytics.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "resources": {
+            "tools": [
+              {
+                "name": "Electron",
+                "link": "https://www.electronjs.org/"
+              },
+              {
+                "name": "SQLite",
+                "link": "https://www.sqlite.org/"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "biz-004",
+        "title": "Employee Scheduling Software",
+        "category": "Web Application",
+        "description": "Automated shift planning system",
+        "details": {
+          "fullDescription": "Develop an intelligent scheduling system that considers employee availability and business needs to create optimal shift schedules.",
+          "difficulty": "Intermediate",
+          "duration": "5-7 weeks",
+          "learningObjectives": [
+            "Scheduling algorithms",
+            "Calendar UI development",
+            "Notification systems",
+            "Conflict detection"
+          ]
+        }
+      },
+      {
+        "id": "biz-005",
+        "title": "Expense Reporting Tool",
+        "category": "Web Application",
+        "description": "Automated expense management system",
+        "details": {
+          "fullDescription": "Create a system that simplifies expense reporting with receipt scanning, automatic categorization, and approval workflows.",
+          "difficulty": "Intermediate",
+          "duration": "4-6 weeks",
+          "steps": [
+            {
+              "title": "Key Features",
+              "items": [
+                "Implement receipt scanning",
+                "Develop categorization engine",
+                "Build approval workflow",
+                "Create reporting dashboard"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "biz-006",
+        "title": "Business Analytics Dashboard",
+        "category": "Web Application",
+        "description": "Interactive KPI visualization tool",
+        "details": {
+          "fullDescription": "Build a customizable dashboard that aggregates data from multiple business systems to visualize key performance indicators.",
+          "difficulty": "Advanced",
+          "duration": "6-8 weeks",
+          "learningObjectives": [
+            "Data aggregation",
+            "Interactive visualization",
+            "Dashboard design",
+            "Real-time updates"
+          ]
+        }
+      },
+      {
+        "id": "biz-007",
+        "title": "Franchise Operations Platform",
+        "category": "Web Application",
+        "description": "Multi-location business management",
+        "details": {
+          "fullDescription": "Develop a system for managing franchise operations including standardized procedures, performance tracking, and centralized marketing.",
+          "difficulty": "Advanced",
+          "duration": "10-12 weeks",
+          "resources": {
+            "tools": [
+              {
+                "name": "Django",
+                "link": "https://www.djangoproject.com/"
+              },
+              {
+                "name": "PostgreSQL",
+                "link": "https://www.postgresql.org/"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "biz-008",
+        "title": "Supply Chain Tracker",
+        "category": "Web Application",
+        "description": "End-to-end shipment monitoring",
+        "details": {
+          "fullDescription": "Create a supply chain visibility platform that tracks shipments across multiple carriers and predicts delays.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks",
+          "learningObjectives": [
+            "Logistics API integration",
+            "Predictive analytics",
+            "Exception management",
+            "Notification systems"
+          ]
+        }
+      },
+      {
+        "id": "biz-009",
+        "title": "Market Research Dashboard",
+        "category": "Web Application",
+        "description": "Competitive intelligence analysis",
+        "details": {
+          "fullDescription": "Build a tool that aggregates and analyzes market research data to identify trends and competitive positioning.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "steps": [
+            {
+              "title": "Core Components",
+              "items": [
+                "Implement data collection",
+                "Develop analysis tools",
+                "Create visualization components",
+                "Build reporting features"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "biz-010",
+        "title": "Freelancer Management System",
+        "category": "Web Application",
+        "description": "Contractor relationship platform",
+        "details": {
+          "fullDescription": "Develop a platform that helps businesses manage freelance relationships including contracts, payments, and performance tracking.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "learningObjectives": [
+            "Contract workflow",
+            "Payment systems",
+            "Skills matching",
+            "Performance evaluation"
+          ]
+        }
+      }
+    ],
+    "education": [
+      {
+        "id": "edu-001",
+        "title": "E-Learning Platform",
+        "category": "Web Development",
+        "description": "Course management with video lessons and quizzes",
+        "details": {
+          "fullDescription": "Build a comprehensive e-learning platform with course creation tools, video lessons, interactive quizzes, progress tracking, and certification system.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks"
+        }
+      },
+      {
+        "id": "edu-002",
+        "title": "Flashcard App",
+        "category": "Mobile Development",
+        "description": "Spaced repetition learning tool",
+        "details": {
+          "fullDescription": "Develop a mobile flashcard application using spaced repetition algorithms to optimize learning and memorization of concepts across various subjects.",
+          "difficulty": "Intermediate",
+          "duration": "4-6 weeks"
+        }
+      },
+      {
+        "id": "edu-003",
+        "title": "Virtual Science Lab",
+        "category": "Web Development",
+        "description": "Interactive STEM experiment simulations",
+        "details": {
+          "fullDescription": "Create a virtual laboratory environment where students can conduct realistic science experiments with accurate physics and chemistry simulations.",
+          "difficulty": "Advanced",
+          "duration": "10-12 weeks",
+          "resources": {
+            "tools": [
+              {
+                "name": "Three.js",
+                "link": "https://threejs.org/"
+              },
+              {
+                "name": "WebGL",
+                "link": "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "edu-004",
+        "title": "Language Learning Assistant",
+        "category": "Mobile Development",
+        "description": "AI-powered language practice tool",
+        "details": {
+          "fullDescription": "Develop an AI chatbot that helps users practice foreign languages through natural conversations with grammar correction.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "learningObjectives": [
+            "Natural language processing",
+            "Language pedagogy",
+            "Error detection",
+            "Progressive learning"
+          ]
+        }
+      },
+      {
+        "id": "edu-005",
+        "title": "Classroom Behavior Tracker",
+        "category": "Mobile Development",
+        "description": "Student engagement analytics tool",
+        "details": {
+          "fullDescription": "Build a system for teachers to track student participation and behavior patterns with analytics and reporting.",
+          "difficulty": "Intermediate",
+          "duration": "5-7 weeks",
+          "steps": [
+            {
+              "title": "Key Features",
+              "items": [
+                "Develop behavior tracking",
+                "Create analytics dashboard",
+                "Implement reporting",
+                "Build notification system"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "edu-006",
+        "title": "Accessible Learning Materials",
+        "category": "Web Development",
+        "description": "Format converter for disabilities",
+        "details": {
+          "fullDescription": "Create a tool that automatically converts textbooks and learning materials into accessible formats (braille, audio, dyslexia-friendly).",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "learningObjectives": [
+            "Accessibility standards",
+            "Document conversion",
+            "Inclusive design",
+            "Format customization"
+          ]
+        }
+      },
+      {
+        "id": "edu-007",
+        "title": "Coding Practice Platform",
+        "category": "Web Development",
+        "description": "Interactive programming exercises",
+        "details": {
+          "fullDescription": "Develop a platform with progressively challenging coding problems, real-time feedback, and automated testing.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "resources": {
+            "tools": [
+              {
+                "name": "Docker",
+                "link": "https://www.docker.com/"
+              },
+              {
+                "name": "Judge0",
+                "link": "https://judge0.com/"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "edu-008",
+        "title": "Educational Game Builder",
+        "category": "Web Development",
+        "description": "Create learning games without coding",
+        "details": {
+          "fullDescription": "Build an authoring tool that allows educators to create custom educational games using templates and drag-and-drop interfaces.",
+          "difficulty": "Advanced",
+          "duration": "10-12 weeks",
+          "learningObjectives": [
+            "Game design principles",
+            "Visual scripting",
+            "Content integration",
+            "Assessment tracking"
+          ]
+        }
+      },
+      {
+        "id": "edu-009",
+        "title": "Peer Tutoring Network",
+        "category": "Web Development",
+        "description": "Connect students for collaborative learning",
+        "details": {
+          "fullDescription": "Create a platform that matches students for peer tutoring based on complementary skills and learning styles.",
+          "difficulty": "Intermediate",
+          "duration": "6-8 weeks",
+          "steps": [
+            {
+              "title": "Core Components",
+              "items": [
+                "Develop matching algorithm",
+                "Create scheduling system",
+                "Build feedback mechanism",
+                "Implement progress tracking"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "edu-010",
+        "title": "AR History Explorer",
+        "category": "Mobile Development",
+        "description": "Interactive historical site visualization",
+        "details": {
+          "fullDescription": "Develop an AR application that overlays historical information and reconstructions onto real-world locations for immersive learning.",
+          "difficulty": "Advanced",
+          "duration": "8-10 weeks",
+          "learningObjectives": [
+            "Location-based AR",
+            "Historical accuracy",
+            "Timeline visualization",
+            "Interactive content"
+          ]
+        }
+      }
+    ]
+  }
+}
