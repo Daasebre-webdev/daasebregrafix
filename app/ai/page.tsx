@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import styles from './ai.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useUser } from '../context/UserContext' // ✅ import user context
+import { useUser } from '../context/UserContext'
+import Image from 'next/image'
 
 interface FormData {
   field: string
@@ -15,10 +16,13 @@ interface FormData {
 }
 
 interface Project {
+  id?: string
   title: string
   description: string
   field?: string
   technologies?: string
+  isUserGenerated?: boolean
+  timestamp?: string
 }
 
 export default function AIGenerator() {
@@ -33,21 +37,37 @@ export default function AIGenerator() {
     technologies: ''
   })
 
-  const [generatedProjects, setGeneratedProjects] = useState<Project[]>([])
+  const [, setGeneratedProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // ✅ Redirect to login if user is not authenticated
   useEffect(() => {
     if (!loading && !user) {
-      // Either redirect OR show prompt
-      router.push('http://localhost/Google_signup/index.php') // redirect to login page
+      router.push('http://localhost/Google_signup/index.php')
     }
   }, [user, loading, router])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const saveGeneratedProjects = (projects: Project[]) => {
+    localStorage.setItem('generatedProjects', JSON.stringify(projects))
+    
+    const existingUserProjects = JSON.parse(localStorage.getItem('userProjects') || '[]')
+    
+    const newUserProjects = projects.map(project => ({
+      ...project,
+      id: `user-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      field: formData.field,
+      technologies: formData.technologies,
+      isUserGenerated: true,
+      timestamp: new Date().toISOString()
+    }))
+    
+    const updatedUserProjects = [...existingUserProjects, ...newUserProjects]
+    localStorage.setItem('userProjects', JSON.stringify(updatedUserProjects))
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -84,7 +104,7 @@ export default function AIGenerator() {
       }
 
       setGeneratedProjects(parsedProjects)
-      localStorage.setItem('generatedProjects', JSON.stringify(parsedProjects))
+      saveGeneratedProjects(parsedProjects)
       router.push('/results')
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred'
@@ -100,10 +120,9 @@ export default function AIGenerator() {
 
   return (
     <div className={styles["dashboard-container"]}>
-      {/* ✅ User Profile Section */}
       {user?.picture && (
         <div className={styles["profile-section"]}>
-          <img
+          <Image
             src={
               user.picture.startsWith('http')
                 ? user.picture
@@ -111,6 +130,8 @@ export default function AIGenerator() {
             }
             alt="User profile"
             className={styles["user-avatar"]}
+            width={40}
+            height={40}
           />
           <div>
             <p><strong>{user.name}</strong></p>
@@ -119,23 +140,20 @@ export default function AIGenerator() {
         </div>
       )}
 
-      {/* Header Section */}
+
       <div className={styles["header"]}>
         <h1 className={styles["main-title"]}>Generate Your Own Project</h1>
         <p className={styles["intro-text"]}>
-          Tell us about your interests, skills, and preferences to get personalized project recommendations 
-          tailored specifically for you. Our AI will analyze your profile and suggest the perfect project ideas.
+          Tell us about your interests, skills, and preferences to get personalized project recommendations.
         </p>
       </div>
 
-      {/* Navigation Menu */}
       <div className={styles["menu"]}>
         <Link href="/dashboard" className={styles["menu-link"]}>Browse Projects</Link>
         <span className={styles["menu-separator"]}>|</span>
         <Link href="/ai" className={styles["menu-link"]}>Generate Your Own Project</Link>
       </div>
 
-      {/* AI Form Section */}
       <div className={styles["ai-generator"]}>
         <form onSubmit={handleSubmit} className={styles["ai-form"]}>
           <h2 className={styles["form-title"]}>Project Criteria</h2>

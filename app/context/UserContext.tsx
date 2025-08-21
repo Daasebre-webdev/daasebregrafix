@@ -3,9 +3,11 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 
 interface User {
+  id?: string
   name: string
   email: string
-  picture: string
+  picture?: string
+  token?: string
 }
 
 interface UserContextType {
@@ -31,8 +33,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
       const userData = await response.json()
 
-      if (userData.picture && !userData.picture.startsWith('http')) {
-        userData.picture = `http://localhost/Google_signup/${userData.picture}`
+      // Ensure picture is a full URL for Next.js Image
+      if (userData.picture) {
+        if (!/^https?:\/\//i.test(userData.picture)) {
+          userData.picture = `http://localhost/Google_signup/uploads/${userData.picture}`
+        }
+      } else {
+        userData.picture = '/default-profile.png'
       }
 
       setUser(userData)
@@ -45,13 +52,28 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     try {
+      // Clear client-side storage first
+      localStorage.removeItem('authToken');
+      sessionStorage.removeItem('authState');
+      
+      // Clear all cookies
+      document.cookie.split(";").forEach((c) => {
+        document.cookie = c
+          .replace(/^ +/, "")
+          .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+      });
+      
+      // Call server logout
       await fetch('http://localhost/Google_signup/logout.php', {
         method: 'POST',
         credentials: 'include',
       })
+    } catch (error) {
+      console.error('Logout error:', error);
     } finally {
       setUser(null)
-      window.location.href = '/'
+      // Force a hard redirect with cache busting to ensure clean state
+      window.location.href = '/?t=' + new Date().getTime();
     }
   }
 
@@ -68,8 +90,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
 export function useUser() {
   const context = useContext(UserContext)
-  if (context === undefined) {
-    throw new Error('useUser must be used within a UserProvider')
-  }
+  if (!context) throw new Error('useUser must be used within a UserProvider')
   return context
 }
+
+export default UserContext

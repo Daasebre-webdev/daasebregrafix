@@ -1,4 +1,7 @@
 <?php
+ini_set('session.cookie_samesite', 'Lax'); // or 'None' if cross-site
+ini_set('session.cookie_secure', '0'); // 0 for HTTP, 1 for HTTPS
+
 session_start();
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Credentials: true");
@@ -17,7 +20,6 @@ if ($mysqli->connect_errno) {
     exit;
 }
 
-// Session-based authentication
 if (!isset($_SESSION['user_id'])) {
     http_response_code(401);
     echo json_encode(['error' => 'Not authenticated']);
@@ -27,7 +29,6 @@ if (!isset($_SESSION['user_id'])) {
 $userId = $_SESSION['user_id'];
 
 try {
-    // ✅ Fetch user data including is_verified and agreed_to_terms
     $stmt = $mysqli->prepare("SELECT id, name, email, picture, is_verified, agreed_to_terms FROM users WHERE id = ?");
     $stmt->bind_param("i", $userId);
     $stmt->execute();
@@ -40,14 +41,21 @@ try {
         exit;
     }
 
-    // ✅ Check if the user is verified and has accepted terms
     if ((int)$userData['is_verified'] !== 1 || (int)$userData['agreed_to_terms'] !== 1) {
         http_response_code(403);
         echo json_encode(['error' => 'User not verified or has not agreed to terms']);
         exit;
     }
 
-    // ✅ Return user data (excluding is_verified and agreed_to_terms)
+    // Process picture URL
+    if (!empty($userData['picture'])) {
+        if (!preg_match('/^https?:\/\//i', $userData['picture'])) {
+            // For local files, ensure proper URL structure
+            $baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+            $userData['picture'] = rtrim($baseUrl, '/') . '/uploads/' . basename($userData['picture']);
+        }
+    }
+
     unset($userData['is_verified'], $userData['agreed_to_terms']);
     echo json_encode($userData);
 

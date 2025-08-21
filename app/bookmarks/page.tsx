@@ -1,70 +1,102 @@
-'use client'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import projects from '../data/projects.json'
-import styles from './bookmarks.module.css'
-import { useUser } from '../context/UserContext'
+'use client';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image'; // Added Image import
+import projects from '../data/projects.json';
+import styles from './bookmarks.module.css';
+import { useUser } from '../context/UserContext';
+import { useBookmarks } from '../../hooks/useBookmarks';
 
-// TypeScript interface for project
 interface Project {
-  id: string
-  title: string
-  category: string
-  description: string
+  id: string;
+  title: string;
+  category: string;
+  description: string;
   details?: {
-    difficulty?: string
-    duration?: string
-  }
+    difficulty?: string;
+    duration?: string;
+    fullDescription?: string;
+    learningObjectives?: string[];
+    steps?: Array<{
+      title: string;
+      items: string[];
+    }>;
+    resources?: {
+      tools?: Array<{ name: string; link: string }>;
+      guides?: Array<{ title: string; link: string }>;
+    };
+  };
 }
 
 export default function Bookmarks() {
-  const { user } = useUser()
-  const [bookmarkedProjects, setBookmarkedProjects] = useState<Project[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const { user } = useUser();
+  const { bookmarkedIds, toggleBookmark, isLoading: bookmarksLoading } = useBookmarks();
+  const [bookmarkedProjects, setBookmarkedProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadBookmarks = () => {
+    const loadBookmarkedProjects = () => {
       try {
-        const bookmarkedIds = JSON.parse(localStorage.getItem('bookmarks') || '[]')
-        const staticProjects = Object.values(projects.projects).flat() as Project[]
-        const generated = JSON.parse(localStorage.getItem('generatedProjects') || '[]') as Project[]
-        const allProjects = [...staticProjects, ...generated]
+        if (!user) {
+          setBookmarkedProjects([]);
+          setIsLoading(false);
+          return;
+        }
+
+        const staticProjects = Object.values(projects.projects).flat() as Project[];
+        const generated = JSON.parse(localStorage.getItem('generatedProjects') || '[]') as Project[];
+        const allProjects = [...staticProjects, ...generated];
 
         const bookmarked = allProjects.filter(project =>
           bookmarkedIds.includes(project.id)
-        )
+        );
 
-        setBookmarkedProjects(bookmarked)
+        setBookmarkedProjects(bookmarked);
       } catch (error) {
-        console.error('Failed to load bookmarks:', error)
+        console.error('Failed to load bookmarks:', error);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    loadBookmarks()
-    window.addEventListener('storage', loadBookmarks)
-    return () => window.removeEventListener('storage', loadBookmarks)
-  }, [])
+    loadBookmarkedProjects();
+
+    const handleBookmarkUpdate = () => {
+      loadBookmarkedProjects();
+    };
+
+    window.addEventListener('bookmarks-updated', handleBookmarkUpdate);
+    return () => window.removeEventListener('bookmarks-updated', handleBookmarkUpdate);
+  }, [user, bookmarkedIds]);
 
   const handleRemoveBookmark = (projectId: string, e: React.MouseEvent) => {
-    e.stopPropagation()
-    const updated = bookmarkedProjects.filter(p => p.id !== projectId)
-    setBookmarkedProjects(updated)
-    localStorage.setItem('bookmarks', JSON.stringify(updated.map(p => p.id)))
+    e.preventDefault();
+    e.stopPropagation();
+    toggleBookmark(projectId);
+  };
+
+  if (!user) {
+    return (
+      <div className={styles.bookmarks_container}>
+        <div className={styles.empty_state}>
+          <p>Please sign in to view your bookmarks</p>
+          <Link href="/" className={styles.browse_btn}>
+            Go to Home
+          </Link>
+        </div>
+      </div>
+    );
   }
 
-  if (isLoading) {
-    return <div className={styles.loading}>Loading your bookmarks...</div>
+  if (isLoading || bookmarksLoading) {
+    return <div className={styles.loading}>Loading your bookmarks...</div>;
   }
 
   return (
     <div className={styles.bookmarks_container}>
-
-      {/* ✅ User Profile Section */}
       {user?.picture && (
         <div className={styles["profile-section"]}>
-          <img
+          <Image
             src={
               user.picture.startsWith('http')
                 ? user.picture
@@ -72,6 +104,9 @@ export default function Bookmarks() {
             }
             alt="User profile"
             className={styles["user-avatar"]}
+            width={40} // Added width
+            height={40} // Added height
+            priority // Optional: if this image is important for LCP
           />
           <div>
             <p><strong>{user.name}</strong></p>
@@ -90,6 +125,7 @@ export default function Bookmarks() {
                 onClick={(e) => handleRemoveBookmark(project.id, e)}
                 className={styles.remove_btn}
                 aria-label="Remove bookmark"
+                disabled={bookmarksLoading}
               >
                 &times;
               </button>
@@ -128,5 +164,5 @@ export default function Bookmarks() {
         </div>
       )}
     </div>
-  )
+  );
 }

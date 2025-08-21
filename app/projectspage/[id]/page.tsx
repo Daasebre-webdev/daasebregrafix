@@ -1,27 +1,58 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { getAllProjects, Project } from '@/app/utils/helpers';
+import { useRouter, useParams } from 'next/navigation';
+import { getAllProjects, type Project } from '@/app/utils/helpers';
+import { useBookmarks } from '@/hooks/useBookmarks';
 import styles from './projectspage.module.css';
 
-
-interface PageProps {
-  params: { id: string };
+// Define types for resources
+interface ResourceItem {
+  name: string;
+  link: string;
 }
 
-export default function ProjectPage({ params }: PageProps) {
-  const { id } = params;
+interface GuideItem {
+  title: string;
+  link: string;
+}
 
-  const [project, setProject] = useState<Project | null>(null);
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+interface ProjectResources {
+  tools?: ResourceItem[];
+  guides?: GuideItem[];
+}
+
+// Augment the Project type to include detailed resources
+interface DetailedProject extends Project {
+  details?: {
+    fullDescription?: string;
+    difficulty?: string;
+    duration?: string;
+    learningObjectives?: string[];
+    steps?: {
+      title: string;
+      items: string[];
+    }[];
+    resources?: ProjectResources;
+  };
+}
+
+export default function ProjectPage() {
+  const params = useParams();
+  const rawId = params?.id;
+
+  // Normalize id to always be a string
+  const id = Array.isArray(rawId) ? rawId[0] : rawId ?? '';
   const router = useRouter();
+
+  const [project, setProject] = useState<DetailedProject | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const { isBookmarked, toggleBookmark, isLoading: bookmarksLoading } = useBookmarks();
 
   useEffect(() => {
     setIsMounted(true);
     const allProjects = getAllProjects();
-    const foundProject = allProjects.find((p) => p.id === id);
+    const foundProject = allProjects.find((p) => p.id === id) as DetailedProject | undefined;
 
     if (!foundProject) {
       router.push('/404');
@@ -29,18 +60,10 @@ export default function ProjectPage({ params }: PageProps) {
     }
 
     setProject(foundProject);
-
-    const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-    setIsBookmarked(bookmarks.includes(id));
   }, [id, router]);
 
-  const toggleBookmark = () => {
-    const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-    const updated = isBookmarked
-      ? bookmarks.filter((bId: string) => bId !== id)
-      : [...bookmarks, id];
-    localStorage.setItem('bookmarks', JSON.stringify(updated));
-    setIsBookmarked(!isBookmarked);
+  const handleBookmarkToggle = () => {
+    if (id) toggleBookmark(id);
   };
 
   if (!isMounted) return <div className={styles.loading}>Loading...</div>;
@@ -58,10 +81,17 @@ export default function ProjectPage({ params }: PageProps) {
 
       <div className={styles.bookmarkControls}>
         <button
-          onClick={toggleBookmark}
-          className={`${styles.bookmarkButton} ${isBookmarked ? styles.bookmarked : ''}`}
+          onClick={handleBookmarkToggle}
+          disabled={bookmarksLoading}
+          className={`${styles.bookmarkButton} ${
+            isBookmarked(id) ? styles.bookmarked : ''
+          }`}
         >
-          {isBookmarked ? 'Bookmarked ✓' : 'Bookmark this Project'}
+          {bookmarksLoading
+            ? '...'
+            : isBookmarked(id)
+            ? 'Bookmarked ✓'
+            : 'Bookmark this Project'}
         </button>
       </div>
 
@@ -125,7 +155,7 @@ export default function ProjectPage({ params }: PageProps) {
                   <>
                     <h4>Tools</h4>
                     <ul className={styles.stepItems}>
-                      {project.details.resources.tools.map((tool: any, index: number) => (
+                      {project.details.resources.tools.map((tool, index) => (
                         <li key={index} className={styles.stepItem}>
                           <a href={tool.link} target="_blank" rel="noopener noreferrer">
                             {tool.name}
@@ -139,7 +169,7 @@ export default function ProjectPage({ params }: PageProps) {
                   <>
                     <h4>Guides</h4>
                     <ul className={styles.stepItems}>
-                      {project.details.resources.guides.map((guide: any, index: number) => (
+                      {project.details.resources.guides.map((guide, index) => (
                         <li key={index} className={styles.stepItem}>
                           <a href={guide.link} target="_blank" rel="noopener noreferrer">
                             {guide.title}

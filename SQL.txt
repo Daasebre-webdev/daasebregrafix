@@ -20,6 +20,20 @@ CREATE TABLE `users` (
   INDEX `idx_verify_token` (`verify_token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+
+CREATE TABLE password_resets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    code VARCHAR(6) NOT NULL,
+    token VARCHAR(64) NULL,
+    expires_at DATETIME NOT NULL,
+    token_expires_at DATETIME NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_email (email),
+    INDEX idx_code (code),
+    INDEX idx_token (token)
+);
 -- For generated projects (already exists in your setup)
 CREATE TABLE IF NOT EXISTS `projects` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,

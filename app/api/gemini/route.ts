@@ -1,10 +1,15 @@
-
-// app/api/gemini/route.ts
 import { GoogleGenAI } from "@google/genai";
 
-export async function POST(request: Request) {
-  const formData = await request.json();
+interface FormData {
+  field: string;
+  skills: string;
+  interests: string;
+  complexity: string;
+  technologies: string;
+}
 
+export async function POST(request: Request) {
+  const formData: FormData = await request.json();
 
   try {
     const prompt = `
@@ -40,45 +45,26 @@ Format:
   },
   ...
 ]
-`
+`;
 
-
-  
-    const ai = new GoogleGenAI({apiKey : "AIzaSyBkVDKlrqpdIg2VTvmme8Ac0gvDiYZG5p4"});
-    
+    const ai = new GoogleGenAI({ apiKey: "AIzaSyBkVDKlrqpdIg2VTvmme8Ac0gvDiYZG5p4" });
     const model = await ai.models.generateContent({ model: "gemini-2.5-flash", contents: prompt });
     const response = await model;
-    const text = response.text
-    console.log({response, candidates:response.text}, 'ahhhhh');
-    return Response.json({text})
-  } catch (error: any) {
+    const text = response.text;
+    console.log({ response, candidates: response.text }, 'ahhhhh');
+    
+    return Response.json({ text });
+  } catch (error: unknown) {
     console.error("Gemini error:", error);
-    return Response.json({ error: error?.message || "Failed to generate response" }, { status: 500 });
+    
+    let errorMessage = "Failed to generate response";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    
+    return Response.json(
+      { error: errorMessage },
+      { status: 500 }
+    );
   }
 }
-
-
-
-
-
-// import { GoogleGenAI } from "@google/genai";
-
-// export async function POST(request: Request) {
-//   const { message } = await request.json();
-
-//   try {
-//     // const genAI = new GoogleGenAI(process.env.GEMINI_API_KEY!);
-//     const ai = new GoogleGenAI({apiKey : "AIzaSyBkVDKlrqpdIg2VTvmme8Ac0gvDiYZG5p4"});
-
-//     const model = await ai.models.generateContent({ model: "gemini-2.5-flash", contents: message });
-//     const response = await model;
-//     // const text = await response.text; 
-//     console.log({response, candidates:response.text, message});
-
-//     return Response.json({ text:response.text});
-
-//   } catch (error) {
-//     console.error("Gemini error:", error); 
-//     return Response.json({ error: "Failed to get response" }, { status: 500 });
-//   }
-// }
